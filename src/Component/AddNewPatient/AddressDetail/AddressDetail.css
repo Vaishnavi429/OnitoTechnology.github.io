@@ -1,0 +1,10 @@
+.addressDetail-row1{
+    margin-top: 20px;
+    display: grid;
+   grid-template-columns: auto auto auto;
+}
+.addressDetail-row2{
+    margin-top: 20px;
+    display: grid;
+   grid-template-columns: auto auto;
+}

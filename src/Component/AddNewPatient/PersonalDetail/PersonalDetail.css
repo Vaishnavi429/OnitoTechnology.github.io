@@ -1,0 +1,13 @@
+.personDetail-row1{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.personDetail-row2{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.IDType{
+    margin-right: 10px;
+}

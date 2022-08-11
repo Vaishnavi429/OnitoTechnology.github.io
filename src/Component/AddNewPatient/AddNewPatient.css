@@ -1,0 +1,30 @@
+.addnewpatient-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    
+}
+.addnewpatient-form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.component-heading{
+    display: inline;
+    border-bottom: 2px solid black;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.addnewpatient-button{
+    display: flex;
+    column-gap: 10px;
+}
+.formInput-error{
+    width: 70%;
+}
+label{
+    font-size: 1em;
+    padding-right: 10px;
+}
