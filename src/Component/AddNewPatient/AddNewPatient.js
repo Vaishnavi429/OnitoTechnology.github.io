@@ -44,11 +44,7 @@ export default function AddNewPatient() {
                 .required('Age must be fill'),
             sex: Yup.string()
                 .required('sex must be fill'),
-            // IDDetail: Yup.string().when('IDtype',{
-            //     is:(IDtype:string)
-            // }
-            
-            //   ),
+           
              
         }),
 
