@@ -2,6 +2,7 @@ import  {useState} from 'react'
 import { useFormik } from 'formik'
 import { Button } from '@mui/material';
 import * as Yup from 'yup';
+import "yup-phone";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
@@ -44,7 +45,24 @@ export default function AddNewPatient() {
                 .required('Age must be fill'),
             sex: Yup.string()
                 .required('sex must be fill'),
-        
+            mobile: Yup.string().phone(null,true,'Invalid Phone Number'),
+            IDtype:Yup.string(),
+            IDDetail:Yup.string(),
+            guardianLabel: Yup.string(),
+            guardainName: Yup.string(),
+            email: Yup.string().email("Invalid email"),
+            emergencyContactNo:Yup.string().phone(null,true,'Invalid Phone Number'),
+            address: Yup.string(),
+            state: Yup.string(),
+            city: Yup.string(),
+            country: Yup.string(),
+            pincode:Yup.string(),
+            occupation: Yup.string(),
+            religion: Yup.string(),
+            martialStatus: Yup.string(),
+            bloodGroup: Yup.string(),
+            nationality: Yup.string()
+
         }),
 
 
@@ -65,11 +83,11 @@ export default function AddNewPatient() {
                     <OtherDetail formik={formik} />
                     <div className='addnewpatient-button'>
                         <div className='formInput-error'>
-                        {errorValue && <Stack sx={{ width: '100%' }} spacing={2}>
+                        { errorValue ?( <Stack sx={{ width: '100%' }} spacing={2}>
                             <Alert variant="filled" severity="error">
                                 {errorValue}
                             </Alert>
-                        </Stack>}
+                        </Stack>):null}
                         </div>
 
                         <Button type="cancel" variant="outlined" >Cancel</Button>
