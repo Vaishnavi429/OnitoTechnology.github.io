@@ -1,4 +1,9 @@
 import React from 'react'
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { TextField } from '@mui/material';
 import './PersonalDetail.css'
 
 
@@ -9,60 +14,80 @@ export default function PersonDetail({ formik }) {
         <div className='personDetail-container'>
             <div className='component-heading'>Personal Detail</div>
             <div className='personDetail-row1'>
-                <span >
+                <span>
+
                     <label htmlFor="name">Name</label>
-                    <input
+                    <TextField
                         id="name"
                         type="text"
+                        label="Name"
+                        variant="outlined"
                         onChange={formik.handleChange}
                         value={formik.values.name}
                     />
                 </span>
                 <span>
                     <label htmlFor="age">Age</label>
-                    <input
+                    <TextField
                         id="age"
                         type="text"
+                        label="Age"
+                        variant="outlined"
                         onChange={formik.handleChange}
                         value={formik.values.age}
                     />
                 </span>
                 <span>
                     <label htmlFor="sex">Sex</label>
-                    <input
+                    <TextField
                         id="sex"
                         type="text"
+                        label="sex"
+                        variant="outlined"
                         onChange={formik.handleChange}
                         value={formik.values.sex}
                     />
                 </span>
             </div>
             <div className='personDetail-row2'>
-                 <span>
-                <label htmlFor="mobile">Mobile</label>
-                <input
-                    id="mobile"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.mobile}
-                />
+                <span>
+                    <label htmlFor="mobile">Mobile</label>
+                    <TextField
+                        id="mobile"
+                        type="text"
+                        label="Mobile"
+                        variant="outlined"
+                        onChange={formik.handleChange}
+                        value={formik.values.mobile}
+                    />
                 </span>
                 <span>
-                <label htmlFor="GovtID">Govt Issued ID</label>
-                <select name="idType" className='IDType'
-                    onChange={formik.handleChange}
-                    value={formik.values.idType}>
-                    <option value="">ID type</option>
-                    {IDType.map((value, index) => (
-                        <option key={index} value={value}>{value}</option>
-                    ))}
-                </select>
-                <input
-                    id="idDetail"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.idDetail}
-                />
+                    <label htmlFor="govtID">Govt Issued ID</label>
+
+                    <FormControl sx={{ minWidth: 120 }}>
+                        <InputLabel id="demo-simple-select-helper-label">ID Type</InputLabel>
+                        <Select
+                            name='IDtype'
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={formik.values.IDtype}
+                            label="ID type"
+                            onChange={formik.handleChange}
+                        >
+                            {IDType.map((value, index) => (
+                                <MenuItem key={index} value={value}>{value}</MenuItem>
+                            ))}
+                        </Select>
+
+                    </FormControl>
+                    <TextField
+                        id="idDetail"
+                        type="text"
+                        label="ID Detail"
+                        variant="outlined"
+                        onChange={formik.handleChange}
+                        value={formik.values.idDetail}
+                    />
                 </span>
             </div>
         </div>
