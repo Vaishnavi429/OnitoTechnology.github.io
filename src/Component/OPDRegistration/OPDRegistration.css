@@ -1,0 +1,16 @@
+
+.opdRegistration-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+}
+.opdRegistration-formContainer{
+    display: flex;
+   column-gap: 50px;
+   margin-top: 10px;
+}
+.opdRegistration-form_label{
+    padding-right: 20px;
+}

@@ -1,0 +1,15 @@
+.PatientServiceDetail-table_input {
+
+    width: 100px;
+    padding: 7px;
+    border-radius: 5px, ;
+    margin-left: 3px;
+    border: none;
+    background-color: #dc303000;
+}
+
+.PatientServiceDetail-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
