@@ -8,17 +8,15 @@ export default function PatientServiceDetail() {
         <>
             <div className='PatientServiceDetail-container'>
                 <div className='PatientServiceDetail-table'>
-                    <div>
-                        <span>#</span>
-                        <span>Name</span>
-                        <span>Rate (Rs)</span>
-                        <span>Qty</span>
-                        <span>Unit</span>
-                        <span>Discount</span>
-                        <span>Total(Rs)</span>
-                        <span>Remarks</span>
-                        <span></span>
-                    </div>
+                        <span style={{width:'20px'}}>#</span>
+                        <span style={{width:'282px'}}>Name</span>
+                        <span style={{width:'100px'}}>Rate (Rs)</span>
+                        <span style={{width:'100px'}}>Qty</span>
+                        <span style={{width:'100px'}}>Unit</span>
+                        <span style={{width:'100px'}}>Discount</span>
+                        <span style={{width:'100px'}}>Total(Rs)</span>
+                        <span style={{width:'100px'}}>Remarks</span>
+                        <span style={{width:'20px'}}></span>
                 </div>
 
                 <Formik
@@ -37,16 +35,20 @@ export default function PatientServiceDetail() {
                                         return (
                                             <div>
                                                 {formik.values.serviceList.map((item, index) => (
-                                                    <ServiceNewRow key={index} />
+                                                    <ServiceNewRow key={index} id = {index} />
                                                 ))}
+                                                <Button variant="contained" onClick={()=>arrayHelpers.insert(formik.values.serviceList.length +1,{})}>add</Button>
                                             </div>
                                         )
-                                    }}
+                                    }}   
+                                        
                             />
+                
+
                         </Form>
                     )}
+
                 </Formik>
-                <Button variant="contained">Add</Button>
             </div>
 
         </>

@@ -4,13 +4,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import './ServiceNewRow.css'
 
-export default function ServiceNewRow({index}) {
+export default function ServiceNewRow(props) {
   const service = ['Consultation Fees', 'Stitching charges', '2D Echo', 'First Aid Charge']
-  console.log(index);
   return (
     
       <div className='ServiceNewRow-rows'>
-        <span>{index+1}</span>
+        <span style={{width:'20px'}}>{props.id+1}</span>
         <span>
           <Select style={{ width: '282px', padding: '0px ', height: '34px' }}
             labelId="demo-simple-select-helper-label"
@@ -20,28 +19,28 @@ export default function ServiceNewRow({index}) {
           // onChange={handleChange}
           >
             {service.map((value, index) =>
-              (<MenuItem value={value}>{value}</MenuItem>))}
+              (<MenuItem key={index} value={value}>{value}</MenuItem>))}
           </Select>
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' />
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' />
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' />
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' variant="outlined" />
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' variant="outlined" />
         </span>
-        <span>
+        <span style={{width:'100px'}}>
           <input className='PatientServiceDetail-table_input' variant="outlined" />
         </span>
-        <span>
+        <span style={{width:'50px'}}>
           <DeleteIcon />
         </span>
       </div>
