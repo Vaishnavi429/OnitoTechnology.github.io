@@ -8,7 +8,7 @@ import './OPDRegistration.css'
 import ServiceNewRow from './PatientServiceDetail/ServiceNewRow/ServiceNewRow';
 import * as Yup from "yup";
 
-const DoctorvalidationSchema = Yup.object.shape({
+const DoctorvalidationSchema = Yup.object().shape({
     date : Yup.string().required("Enter the Date"),
     consultant : Yup.string().required("Select Doctor Name"),
     referred :Yup.string(),
@@ -106,8 +106,9 @@ export default function OPDRegistration() {
                         onSubmit={(values) => {
                             console.log(values)
                         }}>
-                        {({ values,error }) => (
+                        {({ values,errors }) => (
                             <Form>
+                                {console.log("Error",errors)}
                                 <h3>OPD Registration Details</h3>
                                 <table>
                                     <tbody>
@@ -118,7 +119,6 @@ export default function OPDRegistration() {
                                                     name='date'
                                                     type='text'
                                                 />
-                                                <div><ErrorMessage name="date"/></div>
                                             </td>
                                         </tr>
                                         <tr>
