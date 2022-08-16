@@ -1,13 +1,10 @@
 import { useState } from 'react'
 import { Button } from '@mui/material';
 import ServiceNewRow from './ServiceNewRow/ServiceNewRow'
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
+import { FieldArray } from 'formik';
 import './PatientServiceDetail.css'
 export default function PatientServiceDetail({values}) {
-
-console.log(values);
-
+   const newService = {servicetype:'',rate:'',qty:'',unit:'',discount:'',total:'',remarks:''}
     return (<>
 
        
@@ -16,20 +13,17 @@ console.log(values);
                 <div>
                     {values.serviceList.map((item, index) => (
                         <div key={index}>
-                            <Field name={`serviceList[${index}.item]`}
-                                type='text'
-                                placeholder='product name'
-                            />
-                            <Button type='button' onClick={() => arrayHelper.remove(index)}>Delete</Button>
+                            <ServiceNewRow arrayHelpers={arrayHelper} serviceList={values.serviceList} index={index}/>
+                            
                         </div>
                     ))}
-                    <Button type='button' onClick={() => arrayHelper.push("")}>Add </Button>
+                    <Button type='button' onClick={() => arrayHelper.push(newService)}>Add </Button>
                 </div>
 
             )}
 
         />
-        <Button type='submit'>Add submit</Button>S
+        <Button type='submit'>Add submit</Button>
     
 
 
