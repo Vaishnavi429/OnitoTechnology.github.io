@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import './ServiceNewRow.css'
 
-export default function ServiceNewRow({ index, arrayHelpers, setNewService, newService }) {
+export default function ServiceNewRow({ index, arrayHelpers }) {
   const service = ['Consultation Fees', 'Stitching charges', '2D Echo', 'First Aid Charge']
 
   const HandleRemove = (index) => {
