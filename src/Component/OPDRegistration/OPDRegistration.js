@@ -3,33 +3,34 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import { Button } from '@mui/material';
+import { Button, MenuItem,InputLabel, Select, FormControl } from '@mui/material';
 import './OPDRegistration.css'
 import ServiceNewRow from './PatientServiceDetail/ServiceNewRow/ServiceNewRow';
 import * as Yup from "yup";
+import PatientServiceDetail from './PatientServiceDetail/PatientServiceDetail';
 
 const DoctorvalidationSchema = Yup.object().shape({
-    date : Yup.string().required("Enter the Date"),
-    consultant : Yup.string().required("Select Doctor Name"),
-    referred :Yup.string(),
-    serviceList:Yup.array()
-    .of(
-        Yup.object().shape({
-            servicetype:Yup.string().required('select service type'),
-            rate:Yup.number().required('Enter price'),
-            qty:Yup.number().required('Enter Quantity'),
-            unit : Yup.number(),
-            discount:Yup.number(),
-            total:Yup.number().required(),
-            remarks:Yup.string()
+    date: Yup.string().required("Enter the Date"),
+    consultant: Yup.string().required("Select Doctor Name"),
+    referred: Yup.string(),
+    serviceList: Yup.array()
+        .of(
+            Yup.object().shape({
+                servicetype: Yup.string().required('select service type'),
+                rate: Yup.number().required('Enter price'),
+                qty: Yup.number().required('Enter Quantity'),
+                unit: Yup.number(),
+                discount: Yup.number(),
+                total: Yup.number().required(),
+                remarks: Yup.string()
 
-        })
-    )
-    
+            })
+        )
 })
 
 export default function OPDRegistration() {
     const [selectDoctor, setSelectDoctor] = useState()
+    const [doctorName, setDoctorName] = useState("")
 
     const newService = { servicetype: '', rate: '', qty: '', unit: '', discount: '', total: '', remarks: '' }
 
@@ -40,8 +41,13 @@ export default function OPDRegistration() {
             consultant: 'Dr Vivek',
             referred: '',
             serviceList: [{
-                servicetype: 'stitching', rate: '20', qty: '2', unit: '', discount: '', total: '400', remarks: ''
-            }]
+                servicetype: 'stitching', rate: '20', qty: '2', unit: '', discount: '', total: '400', remarks: '',
+            },
+            {
+                servicetype: 'ed', rate: '20', qty: '2', unit: '', discount: '', total: '400', remarks: ''
+
+            }
+        ]
         },
         {
             date: '02/03/2018',
@@ -62,16 +68,13 @@ export default function OPDRegistration() {
     ]
     const HandleChange = (e) => {
         let data = e.target.value
+        setDoctorName(data)
         let showData = DocterService.filter((item) => {
             if (item.consultant === data)
                 return item
         })
         setSelectDoctor(showData[0])
-        console.log(showData);
     }
-
-
-
     return (
         <div className='opdRegistration-container'>
             <div className='opdRegistration-formContainer'>
@@ -95,78 +98,44 @@ export default function OPDRegistration() {
                     </Stack>
                 </div>
                 <div className='opdRegistration-form'>
-                    <Formik
-                        initialValues={{
-                            date: '',
-                            consultant: '',
-                            referred: '',
-                            serviceList: []
-                        }}
-                        validationSchema={DoctorvalidationSchema}
-                        onSubmit={(values) => {
-                            console.log(values)
-                        }}>
-                        {({ values,errors }) => (
-                            <Form>
-                                {console.log("Error",errors)}
-                                <h3>OPD Registration Details</h3>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="opdRegistration-form_label">Date <span style={{ color: 'red' }}>*</span></td>
-                                            <td>
-                                                <Field id="outlined-basic" variant="outlined"
-                                                    name='date'
-                                                    type='text'
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="opdRegistration-form_label">Consultant</td>
-                                            <td>
-
-                                                <Field as="select" name="consultant" onChange={HandleChange}>
-                                                    {Doctor.map((value, index) =>
-                                                        (<option key={index} value={value}>{value}</option>))}
-                                                </Field>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="opdRegistration-form_label">Referred By</td>
-                                            <td>
-                                                <Field style={{ minWidth: '350px' }}
-                                                    id="outlined-basic" label='Enter Referred By'
-                                                    variant="outlined"
-                                                    type='text'
-                                                    name='referred' />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <FieldArray name='serviceList'
-                                    render={(arrayHelper) => (
-                                        <div>
-                                            {values.serviceList.map((item, index) => (
-                                                <div key={index}>
-                                                    <ServiceNewRow arrayHelpers={arrayHelper} serviceList={values.serviceList} index={index} />
-
-                                                </div>
-                                            ))}
-                                            <Button type='button' onClick={() => arrayHelper.push(newService)}>Add </Button>
-                                        </div>
-
-                                    )}
-
-                                />
-                                <Button type='submit'>Add submit</Button>
-                            </Form>
-                        )}
-                    </Formik>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Date*</td>
+                                <td>
+                                    <TextField placeholder='Enter Date' /> </td>
+                            </tr>
+                            <tr>
+                                <td>Consultant</td>
+                                <td >
+                                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                    <InputLabel id="demo-simple-select-label">Doctor</InputLabel>
+                                    
+                                    <Select onChange={HandleChange} labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={doctorName}
+                                        label="Doctor">
+                                        {Doctor.map((value, index) => (<MenuItem value={value} key={index}>{value}</MenuItem>))}
+                                    </Select>
+                                    </FormControl>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Referred By</td>
+                                <td>
+                                    <TextField placeholder='Enter Referrence' /> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   
                 </div>
-            </div>
-            <div>
+                
+
             </div>
 
-        </div>
+            <div>
+                        {selectDoctor && <PatientServiceDetail selectDoctor={selectDoctor}/>}
+                    </div>
+        </div >
     )
 }

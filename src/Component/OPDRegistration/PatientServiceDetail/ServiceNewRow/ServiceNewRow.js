@@ -19,7 +19,6 @@ export default function ServiceNewRow({ index, arrayHelper, serviceList}) {
       <span style={{ width: '20px' }}>{index+1}</span>
       <span>
       <Field as="select" name={`serviceList[${index}].servicetype`}>
-      <option  value="">None</option>
           {service.map((value, index) =>
             ( <option key={index} value={value}>{value}</option>))}
         </Field>
