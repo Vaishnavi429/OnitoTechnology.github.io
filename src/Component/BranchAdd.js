@@ -4,6 +4,7 @@ export default function BranchAdd() {
   return (
     <div>
       <h1>new branch add</h1>
+      <p>Add data</p>
     </div>
   )
 }
